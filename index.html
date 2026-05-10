@@ -355,14 +355,17 @@ body {
 
 .hero-desc {
   font-size: clamp(14px, 2vw, 17px);
-  color: rgba(255,255,255,0.88);
-  /* Use max-width so the desc never overflows — never set a fixed width */
+  color: #131415;
   max-width: min(90vw, 560px);
   width: 100%;
   margin: 0 auto 32px;
   line-height: 1.75;
-  font-weight: 600;
-  text-shadow: 0 1px 12px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.12);
+  font-weight: 700;
+  /* White glow acts as a background halo — keeps black text readable over any video frame */
+  text-shadow:
+    0 0 18px rgba(255,255,255,1),
+    0 0 36px rgba(255,255,255,0.85),
+    0 0 56px rgba(255,255,255,0.6);
 }
 
 .hero-actions {
@@ -980,13 +983,11 @@ footer {
 <!-- ─── HERO ─── -->
 <section class="hero" id="hero">
 <video
-  class="hero-video-bg ready"
-  autoplay
-  muted
-  loop
-  playsinline
+  id="hero-video"
+  class="hero-video-bg"
+  autoplay muted loop playsinline
   preload="auto"
-  poster="assets/hero-poster.jpg"
+  poster="assets/char-about.png"
 >
   <source src="assets/hero-video.mp4" type="video/mp4">
 </video>
@@ -1435,50 +1436,27 @@ if (whySec) whyObs.observe(whySec);
 
 <script>
 (function () {
-  const MUX_HLS = 'https://stream.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c.m3u8';
-  const video   = document.getElementById('hero-video');
+  const video = document.getElementById('hero-video');
   if (!video) return;
 
   function showVideo() {
     video.classList.add('ready');
   }
 
-  function startPlayback() {
-    // Fade in on first decoded frame — poster holds until pixels are sharp
-    const fallback = setTimeout(showVideo, 3000);
-    video.addEventListener('loadeddata', () => { clearTimeout(fallback); showVideo(); }, { once: true });
+  // `loadeddata` fires once the first frame is decoded —
+  // poster (char-about.png) shows until this moment, then video fades in.
+  video.addEventListener('loadeddata', showVideo, { once: true });
 
-    video.play().catch(() => {
-      // Autoplay blocked — reveal + play on first interaction
-      const resume = () => { video.play().catch(() => {}); showVideo(); };
-      document.addEventListener('pointerdown', resume, { once: true });
-      document.addEventListener('keydown',     resume, { once: true });
-    });
-  }
+  // Hard fallback: reveal after 2.5 s if event never fires
+  const fallback = setTimeout(showVideo, 2500);
+  video.addEventListener('loadeddata', () => clearTimeout(fallback), { once: true });
 
-  // Safari / iOS support HLS natively — no library needed
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = MUX_HLS;
-    startPlayback();
-    return;
-  }
-
-  // Chrome / Firefox / Edge — load HLS.js from CDN then init
-  const s = document.createElement('script');
-  s.src = 'https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js';
-  s.onload = function () {
-    if (!Hls.isSupported()) { startPlayback(); return; }
-    const hls = new Hls({ startLevel: -1, maxBufferLength: 20, lowLatencyMode: false });
-    hls.loadSource(MUX_HLS);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, startPlayback);
-  };
-  s.onerror = function () {
-    // CDN failed — try direct src as last resort
-    video.src = MUX_HLS;
-    startPlayback();
-  };
-  document.head.appendChild(s);
+  video.play().catch(() => {
+    // Autoplay blocked — reveal on first interaction
+    const resume = () => { video.play().catch(() => {}); showVideo(); };
+    document.addEventListener('pointerdown', resume, { once: true });
+    document.addEventListener('keydown',     resume, { once: true });
+  });
 })();
 </script>
 </body>
