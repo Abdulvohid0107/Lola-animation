@@ -967,11 +967,20 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="hero">
-  <video class="hero-video-bg" id="hero-video"
-    autoplay muted loop playsinline
-    preload="none"
-    poster="https://image.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c/thumbnail.jpg?width=1920&fit_mode=smartcrop&time=0">
-  </video>
+ <video
+  class="hero-video-bg ready"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  poster="https://image.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c/thumbnail.jpg?width=1920"
+>
+  <source
+    src="https://stream.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c/high.mp4"
+    type="video/mp4"
+  />
+</video>
   <div class="hero-video-overlay"></div>
   <div class="hero-fade"></div>
 
