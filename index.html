@@ -433,6 +433,18 @@ body {
 }
 .hero-pill span { font-size: 15px; line-height: 1; }
 
+
+
+
+ .hero-video-bg {
+  image-rendering: auto;
+  backface-visibility: hidden;
+}
+
+
+
+
+
 /* ─── SECTION COMMONS ─── */
 section { padding: 96px 24px; }
 .container { max-width: 1100px; margin: 0 auto; }
@@ -967,19 +979,16 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="hero">
- <video
+<video
   class="hero-video-bg ready"
   autoplay
   muted
   loop
   playsinline
   preload="auto"
-  poster="https://image.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c/thumbnail.jpg?width=1920"
+  poster="assets/hero-poster.jpg"
 >
-  <source
-    src="https://stream.mux.com/z026zetRohGNRP4PHzL5v01sT01aMlPmThpTH7LtQwsZ2c/high.mp4"
-    type="video/mp4"
-  />
+  <source src="assets/hero-video.mp4" type="video/mp4">
 </video>
   <div class="hero-video-overlay"></div>
   <div class="hero-fade"></div>
