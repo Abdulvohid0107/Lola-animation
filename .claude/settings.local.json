@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /tmp/design_package/lola-animation/chats/ /tmp/design_package/lola-animation/project/)"
+    ]
+  }
+}
