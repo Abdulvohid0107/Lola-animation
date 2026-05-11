@@ -166,29 +166,18 @@ body {
   opacity: 0; animation: aniDown 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both;
 }
 .hero-badge span { color: var(--red); }
-.hero-h1 {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: clamp(52px, 9vw, 108px);
-  color: #fff; line-height: 1; letter-spacing: 2px;
-  text-transform: uppercase; margin-bottom: 20px; margin-top: 12px;
-  text-shadow: 0 2px 32px rgba(0,0,0,0.4);
+.hero-title-img {
+  width: min(72vw, 640px);
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 6px 24px rgba(0,0,0,0.35));
   opacity: 0; animation: aniUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both;
 }
-.hero-sub {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: clamp(18px, 3vw, 32px);
-  color: var(--red); letter-spacing: 1px; text-transform: uppercase;
-  margin-bottom: 22px;
-  opacity: 0; animation: aniUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.6s both;
-}
 .hero-desc {
-  font-size: clamp(17px, 2.2vw, 21px); color: rgba(255,255,255,0.95);
+  font-size: clamp(17px, 2.2vw, 21px); color: rgba(255,255,255,0.92);
   max-width: 620px; margin: 0 auto 36px; line-height: 1.8;
-  font-weight: 800;
-  text-shadow:
-    0 2px 6px rgba(0,0,0,0.95),
-    0 4px 20px rgba(0,0,0,0.8),
-    0 8px 40px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
   opacity: 0; animation: aniUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.75s both;
 }
 .hero-cta {
@@ -471,9 +460,16 @@ footer {
   /* Hero — portrait image anchored to show characters */
   .hero-bg { object-position: center center; }
   .hero-content { padding: calc(var(--nav-h) + 16px) 20px 48px; }
-  .hero-h1 { letter-spacing: 1px; margin-bottom: 6px; }
+  .hero-title-img { width: min(88vw, 420px); margin-top: 12px; margin-bottom: 20px; }
   .hero-sub { font-size: clamp(16px, 5vw, 26px); margin-bottom: 16px; }
-  .hero-desc { font-size: 16px; max-width: 92vw; margin-bottom: 28px; }
+  .hero-desc {
+    font-size: 16px; max-width: 92vw; margin-bottom: 28px;
+    font-weight: 800;
+    text-shadow:
+      0 2px 6px rgba(0,0,0,0.95),
+      0 4px 20px rgba(0,0,0,0.8),
+      0 8px 40px rgba(0,0,0,0.6);
+  }
   .hero-cta .btn-red { padding: 13px 28px; font-size: 14px; }
 
   /* Sections */
@@ -514,7 +510,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-badge,.hero-h1,.hero-sub,.hero-desc,.hero-cta { animation: none !important; opacity: 1 !important; }
+  .hero-badge,.hero-title-img,.hero-desc,.hero-cta { animation: none !important; opacity: 1 !important; }
   .fade-in { transition: none; opacity: 1; transform: none; }
 }
 </style>
@@ -565,8 +561,7 @@ footer {
 
   <div class="hero-content">
     <div class="hero-badge"><span>✦</span> Lola Animation <span>✦</span></div>
-    <h1 class="hero-h1">Jamoamizga<br>qo'shiling</h1>
-    <p class="hero-sub">Animatsiya ustalari uchun</p>
+    <img src="assets/careers-hero-title.png" class="hero-title-img" alt="Jamoamizga qo'shiling">
     <p class="hero-desc">
       Lola Animation jamoasi barcha animatsiya ustalari va ijodkorlarni hamkorlikka chorlaydi. Biz doimiy rivojlanishdamiz va kelgusi qiziqarli animatsion loyihalarimiz uchun professional freelance mutaxassislar bazasini kengaytirmoqdamiz.
     </p>
