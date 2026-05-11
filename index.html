@@ -67,6 +67,8 @@ body {
 .nav:not(.scrolled) .nav-links { background: rgba(255,255,255,0.12); }
 .nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.7); }
 .nav:not(.scrolled) .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.15); }
+/* Hamburger bars are white over the dark hero video */
+.nav:not(.scrolled) .hamburger span { background: #fff; }
 .nav-logo {
   display: flex; align-items: center; gap: 8px;
   text-decoration: none; flex-shrink: 0;
@@ -343,7 +345,7 @@ body {
   width: min(62vw, 580px);
   height: auto;
   display: block;
-  margin: 0 auto 20px;
+  margin: 0 auto 32px;
   filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
   flex-shrink: 0;
 }
@@ -354,11 +356,11 @@ body {
 }
 
 .hero-desc {
-  font-size: clamp(14px, 2vw, 17px);
+  font-size: clamp(17px, 2.5vw, 21px);
   color: #131415;
   max-width: min(90vw, 560px);
   width: 100%;
-  margin: 0 auto 32px;
+  margin: 0 auto 44px;
   line-height: 1.75;
   font-weight: 700;
   /* White glow acts as a background halo — keeps black text readable over any video frame */
@@ -403,7 +405,7 @@ body {
 /* ─── HERO PILLS ─── */
 .hero-pills-wrap {
   display: flex; flex-direction: column; align-items: center;
-  gap: 10px; margin-top: 28px;
+  gap: 10px; margin-top: 40px;
 }
 .hero-pills-label {
   font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -865,12 +867,17 @@ footer {
   }
   .hero-title-img {
     width: min(82vw, 460px);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
   .hero-desc {
-    font-size: 15px;
+    font-size: 17px;
+    color: #fff;
+    text-shadow:
+      0 2px 6px rgba(0,0,0,0.9),
+      0 4px 20px rgba(0,0,0,0.75),
+      0 8px 40px rgba(0,0,0,0.55);
     max-width: 90vw;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     line-height: 1.65;
   }
   .hero-actions { gap: 10px; }
@@ -879,32 +886,33 @@ footer {
     padding: 13px 26px;
     font-size: 14px;
   }
-  .hero-pills-wrap { margin-top: 22px; }
-  /* Pills: single-row horizontal scroll on mobile */
+  .hero-pills-wrap { margin-top: 28px; }
+  /* Pills: wrap naturally on mobile */
   .hero-pills {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding-bottom: 4px;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
   }
-  .hero-pills::-webkit-scrollbar { display: none; }
-  .hero-pills { -ms-overflow-style: none; scrollbar-width: none; }
+  .hero-pill { font-size: 12px; padding: 6px 13px; }
 
   /* Sections */
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
+  .why-chars img { width: min(280px, 80vw); }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .contact-char { max-height: 220px; object-fit: contain; }
   .form-row { grid-template-columns: 1fr; }
   .form-card { padding: 28px 20px; border-radius: 28px; }
   .footer-top { grid-template-columns: 1fr; }
+  footer { padding: 60px 20px 0; }
+  .footer-divider { margin: 0 -20px; }
   section { padding: 72px 20px; }
   .service-card { border-radius: 28px; }
 }
 
 /* Small mobile (≤ 480px) */
 @media (max-width: 480px) {
+  .footer-bottom { flex-wrap: wrap; gap: 6px; justify-content: center; text-align: center; }
   /* Hero — compact but still fully visible */
   .hero-content { padding: 28px 16px; }
   .hero-badge {
@@ -915,12 +923,12 @@ footer {
   }
   .hero-title-img {
     width: min(80vw, 320px);
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
   .hero-desc {
-    font-size: 13px;
+    font-size: 15px;
     max-width: 94vw;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     line-height: 1.6;
   }
   .btn-primary,
@@ -930,9 +938,9 @@ footer {
     border-radius: 40px;
   }
   .hero-pills-wrap {
-    align-items: flex-start;
+    align-items: center;
     padding: 0;
-    margin-top: 18px;
+    margin-top: 22px;
   }
   .hero-pills { padding-bottom: 6px; }
   .hero-pill { font-size: 12px; padding: 6px 13px; }
@@ -960,6 +968,7 @@ footer {
     <a href="#services">Xizmatlar</a>
     <a href="#showreel">Portfolio</a>
     <a href="#contact">Aloqa</a>
+    <a href="careers.html">Jamoaga qo'shilish</a>
   </div>
   <a href="#contact" class="nav-cta">Loyihani boshlash →</a>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -977,6 +986,7 @@ footer {
   <a href="#services" onclick="closeMobileMenu()">Xizmatlar</a>
   <a href="#showreel" onclick="closeMobileMenu()">Portfolio</a>
   <a href="#contact" onclick="closeMobileMenu()">Aloqa</a>
+  <a href="careers.html" onclick="closeMobileMenu()">Jamoaga qo'shilish</a>
   <a href="#contact" class="btn-primary" onclick="closeMobileMenu()" style="justify-content:center;margin-top:16px;">Loyihani boshlash</a>
 </div>
 
@@ -986,10 +996,10 @@ footer {
   id="hero-video"
   class="hero-video-bg"
   autoplay muted loop playsinline
-  preload="auto"
+  preload="none"
   poster="assets/char-about.png"
 >
-  <source src="assets/hero-video.mp4" type="video/mp4">
+  <!-- src injected by JS — prevents any download until the correct file is selected -->
 </video>
   <div class="hero-video-overlay"></div>
   <div class="hero-fade"></div>
@@ -1226,7 +1236,7 @@ footer {
           </div>
         </div>
         <!-- Contact character -->
-        <img src="assets/character-1.png" class="contact-char" alt="Lola Animation personaji" style="object-fit: none">
+        <img src="assets/character-1.png" class="contact-char" alt="Lola Animation personaji">
       </div>
 
       <div class="form-card fade-in" style="transition-delay:.1s">
@@ -1439,6 +1449,12 @@ if (whySec) whyObs.observe(whySec);
   const video = document.getElementById('hero-video');
   if (!video) return;
 
+  // Pick the correct source BEFORE any download begins.
+  // preload="none" on the element guarantees nothing is fetched until we assign .src here.
+  // Using matchMedia instead of a fixed px breakpoint so it matches the CSS ≤768px rule exactly.
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  video.src = isMobile ? 'assets/hero-video-mobile.mp4' : 'assets/hero-video.mp4';
+
   function showVideo() {
     video.classList.add('ready');
   }
@@ -1451,6 +1467,7 @@ if (whySec) whyObs.observe(whySec);
   const fallback = setTimeout(showVideo, 2500);
   video.addEventListener('loadeddata', () => clearTimeout(fallback), { once: true });
 
+  // play() triggers the network request for the chosen source.
   video.play().catch(() => {
     // Autoplay blocked — reveal on first interaction
     const resume = () => { video.play().catch(() => {}); showVideo(); };
