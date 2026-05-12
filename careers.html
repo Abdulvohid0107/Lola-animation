@@ -443,7 +443,11 @@ footer {
 @keyframes aniScale { from{opacity:0;transform:scale(0.9)}        to{opacity:1;transform:scale(1)} }
 
 /* picture wrapper must not participate in hero's flex layout */
-.hero picture { display: contents; }
+.hero picture {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1024px) {
